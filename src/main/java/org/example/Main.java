@@ -126,6 +126,7 @@ public class Main {
                                                 break;
                                         }
                                     }
+                                    break;
                                 case "H":
                                     ledgerPage=false;
                                     break;
