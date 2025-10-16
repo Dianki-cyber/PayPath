@@ -24,7 +24,7 @@ public class Main {
             // Create a switch case to handle what they type
             String choice = scanner.nextLine().trim().toUpperCase();
 
-            switch(choice) {
+            switch (choice) {
                 case "D":
                     try {
                         System.out.println("Type description:");
@@ -75,7 +75,7 @@ public class Main {
                 case "L":
                     boolean ledgerPage = true;
 
-                    while (ledgerPage){
+                    while (ledgerPage) {
                         try {
                             System.out.println("=== Ledger ===");
                             System.out.println("A) Display all entries");
@@ -96,38 +96,44 @@ public class Main {
                                     FileManager.showAllPayments();
                                     break;
                                 case "R":
-                                    System.out.println("=== Reports ===");
-                                    System.out.println("1) Month To Date");
-                                    System.out.println("2) Previous Month");
-                                    System.out.println("3) Year To Date");
-                                    System.out.println("0) Back");
-                                    String reports = scanner.nextLine().trim();
-                                    switch (reports) {
-                                        case "1":
-                                            System.out.println("Enter month index:");
-                                            int monthValue = Integer.parseInt(scanner.nextLine());
+                                    boolean reportPage = true;
+                                    while (reportPage) {
+                                        System.out.println("=== Reports ===");
+                                        System.out.println("1) Month To Date");
+                                        System.out.println("2) Previous Month");
+                                        System.out.println("3) Year To Date");
+                                        System.out.println("0) Back");
+                                        String reports = scanner.nextLine().trim();
+                                        switch (reports) {
+                                            case "1":
+                                                System.out.println("Enter month index:");
+                                                int monthValue = Integer.parseInt(scanner.nextLine());
 
-                                            //call method that shows all transaction by month
-                                            FileManager.showTransactionsBYMonth(monthValue);
-                                            break;
-                                        case "2":
-                                            FileManager.showTransactionPreviousMonth();
-                                            break;
-                                        case "3":
-                                            FileManager.showTransactionsByYearToDate();
-                                            break;
-                                        case "0":
-                                            //call a method to show a ledger m
-
-                                        default:
-                                            System.out.println("Try again....");
-                                            break;
+                                                //call method that shows all transaction by month
+                                                FileManager.showTransactionsBYMonth(monthValue);
+                                                break;
+                                            case "2":
+                                                FileManager.showTransactionPreviousMonth();
+                                                break;
+                                            case "3":
+                                                FileManager.showTransactionsByYearToDate();
+                                                break;
+                                            case "0":
+                                                reportPage = false;
+                                                break;
+                                            default:
+                                                System.out.println("Try again....");
+                                                break;
+                                        }
                                     }
+                                case "H":
+                                    ledgerPage=false;
+                                    break;
                             }
-                        }catch (InputMismatchException exception){
-                                System.out.println("Try again");
+                        } catch (InputMismatchException exception) {
+                            System.out.println("Try again");
 
-                    }
+                        }
 
                     }
                     break;
